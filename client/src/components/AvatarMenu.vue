@@ -32,8 +32,8 @@ export default {
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 35px;
+  height: 35px;
   border-radius: 50%;
   cursor: pointer;
   margin-top: -10px;

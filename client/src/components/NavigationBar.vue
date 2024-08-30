@@ -23,7 +23,6 @@ export default {
         { name: 'Accueil', link: '/' },
         { name: 'Défis', link: '/challenges' },
         { name: 'Recettes', link: '/recipes' },
-        { name: 'Feedback', link: '/feedback' },
         { name: 'Score', link: '/score' },
         { name: 'Support', link: '/support' },
         { name: 'À propos', link: '/about' },
