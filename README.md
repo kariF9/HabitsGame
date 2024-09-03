@@ -1,4 +1,5 @@
 # HabitsGame
+token : token : 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
 
 **HabitsGame** est une application interactive conçue pour aider les utilisateurs à suivre et à améliorer leurs habitudes alimentaires. Grâce à la gamification, l'application transforme la gestion des habitudes en une expérience engageante et motivante, en permettant aux utilisateurs de définir des objectifs alimentaires, de suivre leurs progrès, et de gagner des récompenses pour leurs accomplissements.
 
