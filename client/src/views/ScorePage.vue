@@ -100,14 +100,16 @@ export default {
   max-width: 800px;
   margin: 0 auto;
   margin-top: 50px;
+  position: relative; /* Ajouter cette propriété pour permettre à .total-score de se positionner correctement */
 }
 
 .total-score {
   position: absolute;
-  top: 60px;
-  right: 20px;
+  top: 20px; /* Ajuster cette valeur si nécessaire pour le placement vertical */
+  left: 0; /* Aligner à gauche */
   font-size: 18px;
   font-weight: bold;
+  margin-left: -450px; /* Optionnel: Ajouter un peu de marge gauche pour espacer du bord */
 }
 
 h1 {

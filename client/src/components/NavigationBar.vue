@@ -2,7 +2,7 @@
   <nav class="navbar">
     <ul class="nav-menu">
       <li v-for="(item, index) in menuItems" :key="index">
-        <router-link :to="item.link">{{ item.name }}</router-link>
+        <router-link :to="item.link" class="nav-button">{{ item.name }}</router-link>
       </li>
     </ul>
     <AvatarMenu />
@@ -25,7 +25,7 @@ export default {
         { name: 'Recettes', link: '/recipes' },
         { name: 'Score', link: '/score' },
         { name: 'Support', link: '/support' },
-        { name: 'À propos', link: '/about' },
+        { name: 'À propos', link: '/apropos' },
       ],
     };
   },
@@ -38,7 +38,6 @@ export default {
   justify-content: center;
   align-items: center;
   position: relative;
-  background-color: #2c3e50;
   padding: 10px 20px;
 }
 
@@ -53,14 +52,22 @@ export default {
   margin: 0 15px;
 }
 
-.nav-menu a {
-  color: white;
+.nav-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px; /* Ajustez la largeur selon vos besoins */
+  height: 100px; /* Ajustez la hauteur selon vos besoins */
+  border-radius: 200px; /* Augmentez le rayon pour des boutons plus ronds */
+  background-color: #d3d3d3; /* Couleur grise claire */
+  color: #000; /* Couleur du texte */
   text-decoration: none;
   font-weight: bold;
+  transition: background-color 0.3s; /* Animation lors du survol */
 }
 
-.nav-menu a:hover {
-  text-decoration: underline;
+.nav-button:hover {
+  background-color: #a9a9a9; /* Couleur grise foncée au survol */
 }
 </style>
 

@@ -115,7 +115,7 @@ path.selected {
 }
 
 .options {
-  margin-top: 20px;
+  margin-top: -60px;
   margin-right: 700px;
   display: flex;
   justify-content: space-around;
