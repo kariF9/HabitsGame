@@ -1,4 +1,3 @@
-# HabitsGame
 
 **HabitsGame** est une application interactive conçue pour aider les utilisateurs à suivre et à améliorer leurs habitudes alimentaires. Grâce à la gamification, l'application transforme la gestion des habitudes en une expérience engageante et motivante, en permettant aux utilisateurs de définir des objectifs alimentaires, de suivre leurs progrès, et de gagner des récompenses pour leurs accomplissements.
 
@@ -18,6 +17,10 @@ Pour exécuter HabitsGame localement, suivez ces étapes :
 1. **Cloner le Dépôt** :
    ```bash
    git clone https://github.com/kariF9/HabitsGame.git
+      - L'identifiant est celui des invités au projet.
+      - Un mot de passe est demandé. Il correspond au mot de passe généré par Git et retrouvé dans les paramètres "Developer Settings" puis Personal Access Token.
+
+   Télécharger le projet : 
    cd HabitsGame
 
 2. **Installer les Dépendances** :
@@ -31,8 +34,8 @@ npm install
 
 Lancez le serveur de développement :
 ```bash
-npm start
-et Ouvrez votre navigateur et allez à http://localhost:3000.
+npm start serve
+Récupérer le lien Local et lancez-le dans votre navigateur.
 
 Contact: 
 Si vous avez des questions ou des suggestions, n'hésitez pas à nous contacter à karimabahman00@gmail.com.
