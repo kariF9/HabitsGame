@@ -1,6 +1,6 @@
 <template>
   <div class="challenges-page">
-    <h1>Défis</h1>
+    <h1>Questionnaire</h1>
     <p class="question-count">Question {{ currentQuestionIndex + 1 }} sur {{ questions.length }}</p>
     <h2>{{ currentQuestion.text }}</h2>
     <ColorScale
@@ -181,7 +181,7 @@ h2 {
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin: 0 10px;
+  margin: 10px 10px; /* Ajustement des marges */
 }
 
 .validate-btn {
@@ -205,6 +205,7 @@ h2 {
 .next-question-btn {
   background-color: #2196F3;
   color: white;
+  margin-top: 80px; /* Ajustement pour mieux espacer le bouton "Question suivante" */
 }
 
 .next-question-btn:hover {
@@ -258,11 +259,7 @@ h2 {
 
 .button-container {
   text-align: center;
-  margin-top: 20px;
-}
-
-.reset-btn, .validate-btn, .next-question-btn {
-  margin: 0 5px;
+  margin-top: 30px; /* Ajustement pour espacer tous les boutons */
 }
 
 .thank-you-message {
@@ -271,3 +268,4 @@ h2 {
   color: #4CAF50;
 }
 </style>
+

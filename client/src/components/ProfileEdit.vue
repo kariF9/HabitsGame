@@ -4,7 +4,7 @@
 
     <form @submit.prevent="saveProfile" class="profile-form">
       <div class="form-group">
-        <label for="avatar" class="avatar-label">Avatar</label>
+        <label for="avatar">Avatar</label>
         <div class="avatar-section">
           <img :src="avatarPreview" alt="Aperçu de l'avatar" class="avatar-preview" />
           <button type="button" @click="triggerFileInput" class="change-avatar-btn">Changer l'avatar</button>
@@ -107,13 +107,12 @@ export default {
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
 }
 
 h1 {
   text-align: center;
   margin-bottom: 20px;
-  font-size: 2em; /* Taille de police plus grande */
-  font-weight: bold; /* Texte en gras */
 }
 
 .form-group {
@@ -123,11 +122,6 @@ h1 {
 label {
   display: block;
   margin-bottom: 5px;
-}
-
-.avatar-label {
-  text-align: left; /* Aligner le texte du label à gauche */
-  margin-left: 30px; /* Marge pour centrer un peu à gauche */
 }
 
 input, select {
@@ -151,7 +145,7 @@ input, select {
 }
 
 .change-avatar-btn {
-  background-color: #3498db;
+  background-color: black;
   color: white;
   border: none;
   padding: 10px 15px;
@@ -172,7 +166,7 @@ button {
   display: block;
   width: 100%;
   padding: 10px;
-  background-color: #28a745;
+  background-color:black;
   color: white;
   border: none;
   border-radius: 4px;

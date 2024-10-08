@@ -27,6 +27,8 @@
 <script>
 import emailjs from 'emailjs-com';
 
+emailjs.init('jenLAdfTxPzDatMWj');  // Remplacez par votre clé publique
+
 export default {
   data() {
     return {
@@ -65,12 +67,19 @@ export default {
         return;
       }
 
+      // Structuration du message avec l'adresse e-mail
+      const emailParams = {
+        to_name: this.form.firstname + ' ' + this.form.name, // Nom du destinataire
+        from_name: this.form.firstname + ' ' + this.form.name, // Nom de l'expéditeur
+        from_email: this.form.email, // Ajout de l'adresse e-mail
+        message: this.form.message, // Contenu du message
+      };
+
       try {
         await emailjs.send(
-          'your_service_id',  // Remplacez par votre ID de service
-          'your_template_id', // Remplacez par votre ID de modèle
-          this.form,
-          'your_user_id'      // Remplacez par votre ID d'utilisateur
+          'service_lovms1s',  // Remplacez par votre ID de service
+          'template_kvkthxo', // Remplacez par votre ID de modèle
+          emailParams // Utilisation des paramètres structurés
         );
         this.message = 'Merci pour votre message ! Il a été bien envoyé.';
         this.isSuccess = true;
@@ -86,6 +95,7 @@ export default {
   }
 };
 </script>
+
 
 <style scoped>
 .contact-container {
@@ -157,7 +167,7 @@ button {
   padding: 12px 24px; /* Taille du bouton */
   border: none;
   border-radius: 4px;
-  background-color: #007bff;
+  background-color:black;
   color: #fff;
   font-size: 18px; /* Taille du texte */
   cursor: pointer;
@@ -165,6 +175,9 @@ button {
   opacity: 1;
   display: block;
   margin: 0 auto; /* Centrer le bouton */
+}
+button:hover {
+  background-color: #a9a9a9;
 }
 
 button:disabled {

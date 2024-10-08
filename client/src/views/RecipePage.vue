@@ -2,9 +2,9 @@
   <div class="page-container">
     <!-- Catégories alimentaires à gauche -->
     <div class="food-categories left-categories">
-      <h2>Catégories Alimentaires</h2>
+      
       <div v-for="(food, category) in leftCategories" :key="category" class="food-category">
-        <h3>{{ category }}</h3>
+        <div class="category-title">{{ category }}</div>
         <div class="food-icons">
           <div v-for="item in food" :key="item.name" class="draggable-container">
             <img :src="require(`@/assets/${item.icon}`)" 
@@ -19,7 +19,7 @@
 
     <!-- Contenu central -->
     <div class="central-content">
-      <h1>Ma recette</h1>
+      <h1>compose ton repas</h1>
       <div class="plate-container">
         <!-- Petite assiette pour l'entrée -->
         <div class="plate-container-item">
@@ -51,10 +51,10 @@
           </div>
         </div>
 
-        <!-- Petite assiette pour la boisson -->
+        <!-- Verre pour la boisson -->
         <div class="plate-container-item">
           <div class="plate-title">Boisson</div>
-          <div class="plate small-plate drink-plate" @drop="drop($event, 'drink')" @dragover="allowDrop($event)">
+          <div class="drink-glass" :style="{ backgroundColor: getDrinkColor() }" @drop="drop($event, 'drink')" @dragover="allowDrop($event)">
             <div class="plate-content">
               <img v-for="drink in drinkDish" :key="drink" :src="require(`@/assets/${drink}`)" alt="Boisson" class="food-icon" />
             </div>
@@ -68,9 +68,9 @@
 
     <!-- Catégories alimentaires à droite -->
     <div class="food-categories right-categories">
-      <h2>Catégories Alimentaires</h2>
+      
       <div v-for="(food, category) in rightCategories" :key="category" class="food-category">
-        <h3>{{ category }}</h3>
+        <div class="category-title">{{ category }}</div>
         <div class="food-icons">
           <div v-for="item in food" :key="item.name" class="draggable-container">
             <img :src="require(`@/assets/${item.icon}`)" 
@@ -84,7 +84,6 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   name: 'RecipePage',
@@ -129,7 +128,7 @@ export default {
       draggedIcon: null,
       draggedCategory: null,
       healthMessage: '',
-      healthScore: 100
+      healthScore: 100, // Le score de santé commence à 100
     };
   },
   methods: {
@@ -171,10 +170,13 @@ export default {
       this.mainDish = [];
       this.dessertDish = [];
       this.drinkDish = [];
+      this.healthMessage = ''; // Efface le message de santé
+      this.healthScore = 100;  // Réinitialise le score de santé
     },
     checkRecipe() {
-      this.healthScore = 100;
+      this.healthScore = 100; // Reset du score à chaque vérification
       let emptyPlates = 0;
+      let deductions = [];
 
       // Vérification des assiettes vides
       if (this.starterDish.length === 0) {
@@ -192,17 +194,71 @@ export default {
 
       if (emptyPlates === 4) {
         this.healthMessage = "Vos assiettes sont vides.";
-        this.healthScore = 0;
       } else {
-        if (this.mainDish.some(dish => this.isFat(dish)) || this.mainDish.some(dish => this.isSugar(dish))) {
-          this.healthScore -= 30;
+        // Logique de vérification et de feedback
+        if (this.drinkDish.length > 0 && (this.starterDish.includes('eau') || this.mainDish.includes('eau'))) {
+          this.healthScore -= 50;
+          deductions.push(50);
+          this.healthMessage += "Les boissons doivent être placées dans la section appropriée.\n";
         }
-        if (this.starterDish.some(dish => this.isFat(dish)) || this.starterDish.some(dish => this.isSugar(dish))) {
-          this.healthScore -= 30;
+
+        if (this.starterDish.some(dish => this.isSugar(dish)) || this.mainDish.some(dish => this.isSugar(dish))) {
+          this.healthScore -= 40;
+          deductions.push(40);
+          this.healthMessage += "Les produits sucrés doivent être placés dans le dessert.\n";
         }
-        if (this.drinkDish.some(drink => !this.isDrink(drink))) {
+
+        if (this.starterDish.some(dish => this.isFat(dish))) {
+          this.healthScore -= 60;
+          deductions.push(60);
+          this.healthMessage += "Les matières grasses doivent être évitées dans l'entrée ou le plat principal.\n";
+        } else if (this.dessertDish.some(dish => this.isFat(dish))) {
           this.healthScore -= 30;
+          deductions.push(30);
+          this.healthMessage += "Attention à la quantité de matières grasses dans le dessert.\n";
         }
+
+        // Viandes et produits de la mer
+        if (this.starterDish.some(dish => this.isMeat(dish)) || this.drinkDish.some(dish => this.isMeat(dish))) {
+          this.healthScore -= 70;
+          deductions.push(70);
+          this.healthMessage += "La viande doit être placée dans le plat principal.\n";
+        } else if (this.dessertDish.some(dish => this.isMeat(dish))) {
+          this.healthScore -= 40;
+          deductions.push(40);
+          this.healthMessage += "La viande ne doit pas être placée dans le dessert.\n";
+        }
+
+        // Lait et produits laitiers
+        if (this.mainDish.some(dish => this.isDairy(dish))) {
+          this.healthScore -= 60;
+          deductions.push(60);
+          this.healthMessage += "Les produits laitiers doivent être évités dans le plat principal.\n";
+        }
+
+        // Céréales dans le dessert
+        if (this.dessertDish.some(dish => this.isCereal(dish))) {
+          this.healthScore -= 65;
+          deductions.push(65);
+          this.healthMessage += "Les céréales ne doivent pas être placées dans le dessert.\n";
+        }
+
+        // Fruits et légumes
+        if (this.mainDish.some(dish => this.isFruit(dish))) {
+          this.healthScore -= 90;
+          deductions.push(90);
+          this.healthMessage += "Les fruits doivent être placés dans le dessert ou l'entrée.\n";
+        }
+
+        // Calcul de la moyenne des diminutions
+        if (deductions.length > 0) {
+          const totalDeductions = deductions.reduce((a, b) => a + b, 0);
+          const averageDeduction = totalDeductions / deductions.length;
+          this.healthScore = Math.max(this.healthScore - averageDeduction, 0); // Assure que le score ne soit pas en dessous de 0
+        }
+
+        // Assure que le score ne soit jamais à 0
+        this.healthScore = Math.max(this.healthScore, 1);
 
         if (this.healthScore === 100) {
           this.healthMessage = `Votre repas est parfaitement sain avec un score de ${this.healthScore}%.`;
@@ -211,34 +267,52 @@ export default {
         } else if (this.healthScore > 50) {
           this.healthMessage = `Votre repas est modérément sain avec un score de ${this.healthScore}%.`;
         } else {
-          this.healthMessage = `Attention, votre repas est peu sain avec un score de seulement ${this.healthScore}%.`;
+          this.healthMessage = `Attention, votre repas est peu sain avec un score de ${this.healthScore}%.`;
         }
       }
     },
     isFat(dish) {
-      // Exemple de logique pour déterminer si un plat est gras
       return dish.includes('huile') || dish.includes('beurre');
     },
     isSugar(dish) {
-      // Exemple de logique pour déterminer si un plat est sucré
       return dish.includes('sucre') || dish.includes('bonbons');
     },
     isDrink(drink) {
-      // Exemple de logique pour déterminer si un produit est une boisson
       return drink.includes('eau') || drink.includes('jus');
+    },
+    isMeat(dish) {
+      return dish.includes('boeuf') || dish.includes('saumon'); // Ajouter d'autres types de viandes si nécessaire
+    },
+    isDairy(dish) {
+      return dish.includes('lait') || dish.includes('yaourt');
+    },
+    isCereal(dish) {
+      return dish.includes('riz') || dish.includes('pain');
+    },
+    isFruit(dish) {
+      return dish.includes('carotte') || dish.includes('tomate'); // Ajouter d'autres fruits si nécessaire
+    },
+    getDrinkColor() {
+      if (this.drinkDish.length > 0) {
+        const lastDrink = this.drinkDish[this.drinkDish.length - 1];
+        if (lastDrink.includes('eau')) return 'blue';
+        if (lastDrink.includes('jus')) return 'orange';
+      }
+      return 'transparent'; // Couleur par défaut si aucune boisson n'est sélectionnée
     }
   }
-};
+}
 </script>
+
+
 
 <style scoped>
 h1 {
   font-size: 40px;
   font-weight: bold;
 }
-h2{
+h2 {
   font-size: 30px;
-  
 }
 .page-container {
   display: flex;
@@ -254,6 +328,21 @@ h2{
 
 .left-categories, .right-categories {
   text-align: center;
+}
+
+.food-category {
+  margin-bottom: 20px;
+  border: 2px solid #ccc; /* Bordure pour la catégorie */
+  border-radius: 10px;
+  padding: 10px;
+  position: relative;
+}
+
+.category-title {
+  border: 2px double #666; /* Double bordure pour le titre */
+  padding: 5px;
+  font-weight: bold;
+  margin-bottom: 10px; /* Espace entre le titre et le contenu */
 }
 
 .central-content {
@@ -324,9 +413,13 @@ h2{
   right: 150px;
 }
 
-.drink-plate {
-  bottom: 20px;
-  right: 10px;
+.drink-glass {
+  width: 120px;
+  height: 200px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  position: relative;
+  margin: 0 auto;
 }
 
 .plate-content {
@@ -349,14 +442,12 @@ h2{
   margin-bottom: 20px;
 }
 
-.food-category {
-  margin-bottom: 20px;
-}
-
 .food-icons {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  max-height: 300px; /* Ajuste la hauteur max selon tes besoins */
+  overflow-y: auto; /* Ajoute le défilement vertical */
 }
 
 .food-icon {

@@ -99,8 +99,9 @@ export default {
 <style scoped>
 .color-scale {
   text-align: center;
-  margin-top: 40px;
-  margin-left: 720px;
+  position: relative; /* Assure que les boutons sont positionnés relativement à cet élément */
+  width: 400px; /* Assurez-vous que la largeur correspond à celle du SVG */
+  margin: 0 auto; /* Centre horizontalement la section entière */
 }
 
 path {
@@ -115,13 +116,15 @@ path.selected {
 }
 
 .options {
-  margin-top: -60px;
-  margin-right: 700px;
+  position: relative;
+  margin-top: -190px; /* Ajustez si nécessaire */
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 button {
+  position: absolute; /* Permet de positionner les boutons manuellement */
+  top: 60px; /* Ajuste la position verticale des boutons par rapport à l'arc */
   padding: 10px 20px;
   font-size: 16px;
   border-radius: 5px;
@@ -134,4 +137,13 @@ button {
 button:hover {
   background-color: #e0e0e0;
 }
+
+button:first-child {
+  left: -110px; /* Place le bouton "Jamais" à gauche de l'arc */
+}
+
+button:last-child {
+  right: -110px; /* Place le bouton "Je ne sais pas" à droite de l'arc */
+}
 </style>
+

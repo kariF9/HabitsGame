@@ -3,7 +3,7 @@
     <img :src="avatarSrc" @click="toggleMenu" alt="Avatar" class="avatar" />
     <div v-if="showMenu" class="dropdown-menu">
       <router-link to="/profile">Modifier le profil</router-link>
-      <router-link to="/settings">Paramètres générales</router-link>
+      <router-link to="/parametres">Paramètres générales</router-link>
     </div>
   </div>
 </template>

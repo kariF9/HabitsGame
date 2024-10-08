@@ -21,9 +21,7 @@ export default {
     return {
       menuItems: [
         { name: 'Accueil', link: '/' },
-        { name: 'Défis', link: '/challenges' },
-        { name: 'Recettes', link: '/recipes' },
-        { name: 'Score', link: '/score' },
+        { name: 'Mini-jeux', link: '/mini_jeux'},
         { name: 'Support', link: '/support' },
         { name: 'À propos', link: '/apropos' },
       ],
@@ -59,8 +57,8 @@ export default {
   width: 120px; /* Ajustez la largeur selon vos besoins */
   height: 100px; /* Ajustez la hauteur selon vos besoins */
   border-radius: 200px; /* Augmentez le rayon pour des boutons plus ronds */
-  background-color: #d3d3d3; /* Couleur grise claire */
-  color: #000; /* Couleur du texte */
+  background-color: black; /* Couleur grise claire */
+  color: white; /* Couleur du texte */
   text-decoration: none;
   font-weight: bold;
   transition: background-color 0.3s; /* Animation lors du survol */

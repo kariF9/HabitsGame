@@ -52,7 +52,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 95.5vh;
+  height: 87.8vh;
   overflow: hidden;
   margin: 0;
 }
