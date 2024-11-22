@@ -1,24 +1,24 @@
 <template>
   <div class="contact-container">
-    <h1>Contactez-nous</h1>
+    <h1>{{ $t('menu.contactUs') }}</h1>
     <form @submit.prevent="sendEmail" class="contact-form">
-      <div class="form-group" id="name">
-        <label for="name">Nom</label>
+      <div class="form-group">
+        <label for="name">{{ $t('menu.name') }}</label>
         <input v-model="form.name" id="name" type="text" required />
       </div>
-      <div class="form-group" id="firstname">
-        <label for="firstname">Prénom</label>
+      <div class="form-group">
+        <label for="firstname">{{ $t('menu.firstName') }}</label>
         <input v-model="form.firstname" id="firstname" type="text" required />
       </div>
-      <div class="form-group" id="email">
-        <label for="email">Adresse E-mail</label>
+      <div class="form-group">
+        <label for="email">{{ $t('menu.email') }}</label>
         <input v-model="form.email" id="email" type="email" required />
       </div>
-      <div class="form-group" id="message">
-        <label for="message">Message</label>
+      <div class="form-group">
+        <label for="message">{{ $t('menu.message') }}</label>
         <textarea v-model="form.message" id="message" required></textarea>
       </div>
-      <button type="submit" :disabled="loading">Envoyer</button>
+      <button type="submit" :disabled="loading">{{ $t('menu.send') }}</button>
     </form>
     <p v-if="message" :class="{ success: isSuccess, error: !isSuccess }">{{ message }}</p>
   </div>
@@ -96,17 +96,20 @@ export default {
 };
 </script>
 
-
 <style scoped>
+h1 {
+  color: white;
+}
 .contact-container {
   max-width: 800px; /* Largeur maximale du conteneur */
   margin: 0 auto;
   padding: 40px; /* Padding autour du formulaire */
-  background: #f9f9f9;
+  background: black;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre pour plus de profondeur */
   position: relative;
   overflow: hidden;
+  margin-top: 30px;
 }
 
 .contact-container h1 {
@@ -114,16 +117,18 @@ export default {
   text-align: center; /* Centrer le titre */
   font-size: 2.5em; /* Taille du titre */
   margin-bottom: 30px; /* Espacement sous le titre */
+  
 }
 
 .contact-form {
   display: flex;
   flex-direction: column;
+  margin-left: 200px;
 }
 
 .form-group {
   margin-bottom: 20px; /* Espacement entre les champs */
-  opacity: 0;
+  opacity: 1;
   transform: translateX(-100px);
   animation-duration: 1s;
   animation-fill-mode: both;
@@ -132,22 +137,12 @@ export default {
 .form-group label {
   display: block;
   font-weight: bold; /* Mettre en gras les étiquettes */
+  color: white;
 }
 
-#name {
+#name, #firstname, #email, #message {
   animation: slideInFromLeft 1s ease-out forwards;
-}
-
-#firstname {
-  animation: slideInFromRight 1s ease-out forwards;
-}
-
-#email {
-  animation: slideInFromLeft 1s ease-out forwards;
-}
-
-#message {
-  animation: slideInFromRight 1s ease-out forwards;
+  color: white; /* Définit la couleur du texte */
 }
 
 input,
@@ -156,6 +151,8 @@ textarea {
   padding: 12px; /* Augmenter le padding pour plus de confort */
   border: 1px solid #ddd;
   border-radius: 4px;
+  color: white; /* Modifie la couleur du texte en blanc */
+  background-color: #333; /* Modifie la couleur de fond */
 }
 
 textarea {
@@ -163,18 +160,21 @@ textarea {
   resize: vertical; /* Permettre la redimension verticale */
 }
 
+
 button {
   padding: 12px 24px; /* Taille du bouton */
   border: none;
   border-radius: 4px;
   background-color:black;
-  color: #fff;
+  color: black;
   font-size: 18px; /* Taille du texte */
   cursor: pointer;
   animation: slideUp 3s ease-out forwards;
   opacity: 1;
   display: block;
   margin: 0 auto; /* Centrer le bouton */
+  background-color: white;
+  margin-left: 100px;
 }
 button:hover {
   background-color: #a9a9a9;

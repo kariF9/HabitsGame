@@ -73,7 +73,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 87.8vh;
+  height: 87.3vh;
   background-color: black;
   position: relative;
 }

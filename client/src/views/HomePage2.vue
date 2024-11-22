@@ -1,36 +1,27 @@
 <template>
   <div class="homepage">
     <div class="intro-section">
-      <h1>Transformer vos habitudes alimentaires en jeu captivant</h1>
-      <h2>
-        Développez un mode de vie plus sain en relevant des défis nutritionnels,
-        tout en vous amusant à choisir vos repas, répondre aux questionnaires,
-        et suivre vos progrès.
-      </h2>
+      <h1>{{ $t('menu.transform') }}</h1>
+      <h2>{{ $t('menu.challenges') }}</h2>
     </div>
 
     <div class="pnns-section">
-      <h1>Qu'est-ce que le PNNS ?</h1>
-      <h2>
-        Le Programme National Nutrition Santé (PNNS) est une initiative
-        française visant à améliorer la santé publique à travers des actions
-        nutritionnelles. Il promeut une alimentation équilibrée, l'activité
-        physique régulière, et la prévention des maladies liées à la nutrition.
-      </h2>
+      <h1>{{ $t('menu.pnns') }}</h1>
+      <h2>{{ $t('menu.pnnsDescription') }}</h2>
     </div>
 
     <div class="carousel-container">
       <div class="carousel" :style="{ transform: translateX }">
         <div class="carousel-slide">
-          <h4>alimentation</h4>
+          <h4>{{ $t('menu.food') }}</h4>
           <img src="https://docteurbonnebouffe.com/wp-content/uploads/2019/02/PNNS-4-recommandations-nutritionnelles.jpg" alt="Alimentation" width="400" height="240" />
         </div>
         <div class="carousel-slide">
-          <h4>Labélisation</h4>
+          <h4>{{ $t('menu.labeling') }}</h4>
           <img src="https://www.normandie.ars.sante.fr/system/files/2024-04/site-PNNS.jpg" alt="Labélisation" width="400" height="240" />
         </div>
         <div class="carousel-slide">
-          <h4>Exercice</h4>
+          <h4>{{ $t('menu.exercise') }}</h4>
           <img src="https://www.bourgogne-franche-comte.ars.sante.fr/system/files/2017-09/PNNS-Logo_678x454.jpg" alt="Exercice" width="400" height="240" />
         </div>
       </div>
@@ -38,7 +29,7 @@
       <button class="arrow right" @click="nextSlide">&#10095;</button>
     </div>
     <div>
-      <a href="https://www.mangerbouger.fr/" target="_blank" class="pnns-button">Découvrir le PNNS</a>
+      <a href="https://www.mangerbouger.fr/" target="_blank" class="pnns-button">{{ $t('menu.discoverPNNS') }}</a>
     </div>
   </div>
 </template>
@@ -95,12 +86,17 @@ h4 {
 }
 .intro-section {
   margin-top: 80px;
+  animation: slideDown 1.2s ease-out forwards; /* Applique l'animation */
+}
+.pnns-section{
+  animation: slideDown 1.4s ease-out forwards; /* Applique l'animation */
 }
 .carousel-container {
   position: relative;
   width: 90%;
   margin: 0 auto;
   overflow: hidden; /* Cache les débordements */
+  animation: slideDown 1.6s ease-out forwards; 
 }
 
 .carousel {
@@ -173,6 +169,16 @@ h4 {
   100% {
     transform: translateX(-50%); /* Se déplace vers le centre */
     opacity: 1; /* Devenu visible */
+  }
+}
+@keyframes slideDown {
+  0% {
+    transform: translateY(-100%); /* Commencer au-dessus de l'écran */
+    opacity: 0; /* Invisible au début */
+  }
+  100% {
+    transform: translateY(0); /* Position finale à l'endroit d'origine */
+    opacity: 1; /* Visible à la fin */
   }
 }
 </style>

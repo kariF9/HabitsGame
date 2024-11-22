@@ -1,8 +1,8 @@
 <template>
   <div class="color-scale">
     <svg
-      width="400"
-      height="250"
+      width="600" 
+      height="350"
       viewBox="0 0 300 150"
       role="img"
       aria-labelledby="colorScaleTitle"
@@ -100,7 +100,7 @@ export default {
 .color-scale {
   text-align: center;
   position: relative; /* Assure que les boutons sont positionnés relativement à cet élément */
-  width: 400px; /* Assurez-vous que la largeur correspond à celle du SVG */
+  width: 600px; /* Ajustez la largeur pour correspondre à l'agrandissement du SVG */
   margin: 0 auto; /* Centre horizontalement la section entière */
 }
 
@@ -117,17 +117,17 @@ path.selected {
 
 .options {
   position: relative;
-  margin-top: -190px; /* Ajustez si nécessaire */
+  margin-top: -240px; /* Ajustez cette valeur pour placer les boutons correctement */
   display: flex;
   justify-content: space-between;
 }
 
 button {
   position: absolute; /* Permet de positionner les boutons manuellement */
-  top: 60px; /* Ajuste la position verticale des boutons par rapport à l'arc */
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
+  top: 100px; /* Ajuste la position verticale des boutons par rapport à l'arc agrandi */
+  padding: 12px 24px;
+  font-size: 18px; /* Augmente la taille de police pour améliorer la lisibilité */
+  border-radius: 8px; /* Plus de bord arrondi pour correspondre à l'agrandissement */
   background-color: #f0f0f0;
   border: 1px solid #ccc;
   cursor: pointer;
@@ -139,11 +139,10 @@ button:hover {
 }
 
 button:first-child {
-  left: -110px; /* Place le bouton "Jamais" à gauche de l'arc */
+  left: -130px; /* Place le bouton "Jamais" à gauche de l'arc agrandi */
 }
 
 button:last-child {
-  right: -110px; /* Place le bouton "Je ne sais pas" à droite de l'arc */
+  right: -130px; /* Place le bouton "Je ne sais pas" à droite de l'arc agrandi */
 }
 </style>
-

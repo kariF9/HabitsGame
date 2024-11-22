@@ -4,7 +4,7 @@
     <div class="food-categories left-categories">
       
       <div v-for="(food, category) in leftCategories" :key="category" class="food-category">
-        <div class="category-title">{{ category }}</div>
+        <div class="category-title":style="getCategoryStyle(category)">{{ category }}</div>
         <div class="food-icons">
           <div v-for="item in food" :key="item.name" class="draggable-container">
             <img :src="require(`@/assets/${item.icon}`)" 
@@ -70,7 +70,7 @@
     <div class="food-categories right-categories">
       
       <div v-for="(food, category) in rightCategories" :key="category" class="food-category">
-        <div class="category-title">{{ category }}</div>
+        <div class="category-title":style="getCategoryStyle(category)">{{ category }}</div>
         <div class="food-icons">
           <div v-for="item in food" :key="item.name" class="draggable-container">
             <img :src="require(`@/assets/${item.icon}`)" 
@@ -92,7 +92,10 @@ export default {
       leftCategories: {
         "Légumes et Fruits": [
           { name: "Carotte", icon: "carotte.png" },
-          { name: "Tomate", icon: "tomate.png" }
+          { name: "Tomate", icon: "tomate.png" },
+          { name: "Banane", icon: "banane.png"},
+          { name: "Avocado", icon: "avocado.png"},
+          { name: "Pomme", icon: "pomme.png"}
         ],
         "Céréales et Dérivés": [
           { name: "Riz", icon: "riz.png" },
@@ -121,6 +124,18 @@ export default {
           { name: "Jus", icon: "jus.png" }
         ]
       },
+      getCategoryStyle(category) {
+        const styles = {
+          "Légumes et Fruits": { backgroundColor: 'green' },
+          "Céréales et Dérivés": { backgroundColor: 'orange' },
+          "Lait et Produits Laitiers": { backgroundColor: 'blue' },
+          "Viandes, Volailles, Poissons et Produits de la Mer, Œufs": { backgroundColor: 'red' },
+          "Matières Grasses": { backgroundColor: 'yellow' },
+          "Sucre et Produits Sucrés": { backgroundColor: 'pink' },
+          "Boissons": { backgroundColor: 'gray' },
+        };
+        return styles[category] || {};
+      },
       mainDish: [],
       starterDish: [],
       dessertDish: [],
@@ -128,7 +143,7 @@ export default {
       draggedIcon: null,
       draggedCategory: null,
       healthMessage: '',
-      healthScore: 100, // Le score de santé commence à 100
+      healthScore: 100,
     };
   },
   methods: {
@@ -147,7 +162,29 @@ export default {
     drop(event, dishType) {
       event.preventDefault();
       const icon = event.dataTransfer.getData("text/plain");
+      
+      // Ajout de l'élément à la zone cible
       this.addDish(dishType, icon);
+      
+      // Suppression de l'icône de sa catégorie d'origine
+      this.removeIconFromCategory(icon);
+    },
+    removeIconFromCategory(icon) {
+      // Parcourir les catégories de gauche
+      Object.keys(this.leftCategories).forEach(category => {
+        const index = this.leftCategories[category].findIndex(item => item.icon === icon);
+        if (index !== -1) {
+          this.leftCategories[category].splice(index, 1);
+        }
+      });
+
+      // Parcourir les catégories de droite
+      Object.keys(this.rightCategories).forEach(category => {
+        const index = this.rightCategories[category].findIndex(item => item.icon === icon);
+        if (index !== -1) {
+          this.rightCategories[category].splice(index, 1);
+        }
+      });
     },
     addDish(dishType, icon) {
       switch (dishType) {
@@ -166,19 +203,56 @@ export default {
       }
     },
     resetPage() {
+      // Réinitialisation des catégories à leur état initial
+      this.leftCategories = {
+        "Légumes et Fruits": [
+          { name: "Carotte", icon: "carotte.png" },
+          { name: "Tomate", icon: "tomate.png" },
+          { name: "Banane", icon: "banane.png"},
+          { name: "Avocado", icon: "avocado.png"},
+          { name: "Pomme", icon: "pomme.png"}
+        ],
+        "Céréales et Dérivés": [
+          { name: "Riz", icon: "riz.png" },
+          { name: "Pain", icon: "pain.png" }
+        ],
+        "Lait et Produits Laitiers": [
+          { name: "Lait", icon: "lait.png" },
+          { name: "Yaourt", icon: "yaourt.png" }
+        ]
+      };
+      
+      this.rightCategories = {
+        "Viandes, Volailles, Poissons et Produits de la Mer, Œufs": [
+          { name: "Boeuf", icon: "boeuf.png" },
+          { name: "Saumon", icon: "saumon.png" }
+        ],
+        "Matières Grasses": [
+          { name: "Huile", icon: "huile.png" },
+          { name: "Beurre", icon: "beurre.png" }
+        ],
+        "Sucre et Produits Sucrés": [
+          { name: "Sucre", icon: "sucre.png" },
+          { name: "Bonbons", icon: "bonbons.png" }
+        ],
+        "Boissons": [
+          { name: "Eau", icon: "eau.png" },
+          { name: "Jus", icon: "jus.png" }
+        ]
+      };
+      
       this.starterDish = [];
       this.mainDish = [];
       this.dessertDish = [];
       this.drinkDish = [];
-      this.healthMessage = ''; // Efface le message de santé
-      this.healthScore = 100;  // Réinitialise le score de santé
+      this.healthMessage = '';
+      this.healthScore = 100;
     },
     checkRecipe() {
-      this.healthScore = 100; // Reset du score à chaque vérification
+      this.healthScore = 100;
       let emptyPlates = 0;
       let deductions = [];
 
-      // Vérification des assiettes vides
       if (this.starterDish.length === 0) {
         emptyPlates += 1;
       }
@@ -195,7 +269,6 @@ export default {
       if (emptyPlates === 4) {
         this.healthMessage = "Vos assiettes sont vides.";
       } else {
-        // Logique de vérification et de feedback
         if (this.drinkDish.length > 0 && (this.starterDish.includes('eau') || this.mainDish.includes('eau'))) {
           this.healthScore -= 50;
           deductions.push(50);
@@ -218,7 +291,6 @@ export default {
           this.healthMessage += "Attention à la quantité de matières grasses dans le dessert.\n";
         }
 
-        // Viandes et produits de la mer
         if (this.starterDish.some(dish => this.isMeat(dish)) || this.drinkDish.some(dish => this.isMeat(dish))) {
           this.healthScore -= 70;
           deductions.push(70);
@@ -229,35 +301,30 @@ export default {
           this.healthMessage += "La viande ne doit pas être placée dans le dessert.\n";
         }
 
-        // Lait et produits laitiers
         if (this.mainDish.some(dish => this.isDairy(dish))) {
           this.healthScore -= 60;
           deductions.push(60);
           this.healthMessage += "Les produits laitiers doivent être évités dans le plat principal.\n";
         }
 
-        // Céréales dans le dessert
         if (this.dessertDish.some(dish => this.isCereal(dish))) {
           this.healthScore -= 65;
           deductions.push(65);
           this.healthMessage += "Les céréales ne doivent pas être placées dans le dessert.\n";
         }
 
-        // Fruits et légumes
         if (this.mainDish.some(dish => this.isFruit(dish))) {
           this.healthScore -= 90;
           deductions.push(90);
           this.healthMessage += "Les fruits doivent être placés dans le dessert ou l'entrée.\n";
         }
 
-        // Calcul de la moyenne des diminutions
         if (deductions.length > 0) {
           const totalDeductions = deductions.reduce((a, b) => a + b, 0);
           const averageDeduction = totalDeductions / deductions.length;
-          this.healthScore = Math.max(this.healthScore - averageDeduction, 0); // Assure que le score ne soit pas en dessous de 0
+          this.healthScore = Math.max(this.healthScore - averageDeduction, 0);
         }
 
-        // Assure que le score ne soit jamais à 0
         this.healthScore = Math.max(this.healthScore, 1);
 
         if (this.healthScore === 100) {
@@ -281,7 +348,7 @@ export default {
       return drink.includes('eau') || drink.includes('jus');
     },
     isMeat(dish) {
-      return dish.includes('boeuf') || dish.includes('saumon'); // Ajouter d'autres types de viandes si nécessaire
+      return dish.includes('boeuf') || dish.includes('saumon');
     },
     isDairy(dish) {
       return dish.includes('lait') || dish.includes('yaourt');
@@ -290,7 +357,7 @@ export default {
       return dish.includes('riz') || dish.includes('pain');
     },
     isFruit(dish) {
-      return dish.includes('carotte') || dish.includes('tomate'); // Ajouter d'autres fruits si nécessaire
+      return dish.includes('carotte') || dish.includes('tomate');
     },
     getDrinkColor() {
       if (this.drinkDish.length > 0) {
@@ -298,13 +365,11 @@ export default {
         if (lastDrink.includes('eau')) return 'blue';
         if (lastDrink.includes('jus')) return 'orange';
       }
-      return 'transparent'; // Couleur par défaut si aucune boisson n'est sélectionnée
+      return 'transparent';
     }
   }
 }
 </script>
-
-
 
 <style scoped>
 h1 {
@@ -319,7 +384,7 @@ h2 {
   justify-content: space-between;
   align-items: flex-start;
   padding: 20px;
-  height: 100vh;
+  height: 80vh;
 }
 
 .food-categories {
@@ -416,7 +481,9 @@ h2 {
 .drink-glass {
   width: 120px;
   height: 200px;
-  border: 2px solid #ccc;
+  background-image: url('../assets/glass.png') ;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: 10px;
   position: relative;
   margin: 0 auto;
@@ -433,8 +500,8 @@ h2 {
 }
 
 .food-icon {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   margin: 2px;
 }
 
@@ -446,7 +513,7 @@ h2 {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  max-height: 300px; /* Ajuste la hauteur max selon tes besoins */
+  max-height: 100px; /* Ajuste la hauteur max selon tes besoins */
   overflow-y: auto; /* Ajoute le défilement vertical */
 }
 

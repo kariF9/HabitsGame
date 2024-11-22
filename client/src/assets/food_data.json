@@ -804,8 +804,86 @@
         "fibres": "0 g",
         "proteines": "1 g",
         "sel": "0 g"
-    }
+    },
     
+    {
+        "nom_produit": "Dattes",
+        "code": "9876543210123",
+        "nutri_score": "C",
+        "energie": "282 kcal",
+        "graisse": "0.4 g",
+        "graisse_saturee": "0.1 g",
+        "glucides": "75 g",
+        "sucres": "66 g",
+        "fibres": "8 g",
+        "proteines": "2.5 g",
+        "sel": "0.02 g"
+    },
+    {
+        "nom_produit": "Kiwi",
+        "code": "1234567890654",
+        "nutri_score": "A",
+        "energie": "61 kcal",
+        "graisse": "0.5 g",
+        "graisse_saturee": "0 g",
+        "glucides": "15 g",
+        "sucres": "9 g",
+        "fibres": "3 g",
+        "proteines": "1.1 g",
+        "sel": "0 g"
+    },
+    {
+        "nom_produit": "Kinder Bueno",
+        "code": "1234567890789",
+        "nutri_score": "E",
+        "energie": "572 kcal",
+        "graisse": "37 g",
+        "graisse_saturee": "16 g",
+        "glucides": "49 g",
+        "sucres": "46 g",
+        "fibres": "1.5 g",
+        "proteines": "8 g",
+        "sel": "0.26 g"
+    },
+    {
+        "nom_produit": "Mars",
+        "code": "1234567890910",
+        "nutri_score": "E",
+        "energie": "448 kcal",
+        "graisse": "17 g",
+        "graisse_saturee": "8 g",
+        "glucides": "69 g",
+        "sucres": "60 g",
+        "fibres": "1.1 g",
+        "proteines": "4 g",
+        "sel": "0.40 g"
+    },
+    {
+        "nom_produit": "Twix",
+        "code": "1234567891123",
+        "nutri_score": "E",
+        "energie": "497 kcal",
+        "graisse": "24 g",
+        "graisse_saturee": "14 g",
+        "glucides": "64 g",
+        "sucres": "47 g",
+        "fibres": "2 g",
+        "proteines": "5.3 g",
+        "sel": "0.35 g"
+    },
+    {
+        "nom_produit": "Snickers",
+        "code": "1234567891345",
+        "nutri_score": "E",
+        "energie": "488 kcal",
+        "graisse": "23 g",
+        "graisse_saturee": "8 g",
+        "glucides": "57 g",
+        "sucres": "48 g",
+        "fibres": "2.7 g",
+        "proteines": "8 g",
+        "sel": "0.41 g"
+    }
     
     
     

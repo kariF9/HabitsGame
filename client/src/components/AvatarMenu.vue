@@ -1,10 +1,12 @@
 <template>
   <div class="avatar-menu">
     <img :src="avatarSrc" @click="toggleMenu" alt="Avatar" class="avatar" />
-    <div v-if="showMenu" class="dropdown-menu">
-      <router-link to="/profile">Modifier le profil</router-link>
-      <router-link to="/parametres">Paramètres générales</router-link>
-    </div>
+    <transition name="slide-down">
+      <div v-if="showMenu" class="dropdown-menu">
+        <router-link to="/profile" @click="closeMenu">Modifier le profil</router-link>
+        <router-link to="/parametres" @click="closeMenu">Paramètres générales</router-link>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -20,6 +22,9 @@ export default {
   methods: {
     toggleMenu() {
       this.showMenu = !this.showMenu;
+    },
+    closeMenu() {
+      this.showMenu = false; // Fermer le menu après avoir cliqué sur un élément
     },
     loadAvatar() {
       const savedProfile = localStorage.getItem('userProfile');
@@ -57,6 +62,7 @@ export default {
   cursor: pointer;
   margin-top: 10px;
   margin-right: 30px;
+  animation: slide-avatar 1s ease-out; /* Animation de l'avatar */
 }
 
 .dropdown-menu {
@@ -82,5 +88,46 @@ export default {
 
 .dropdown-menu a:hover {
   background-color: #f1f1f1;
+}
+
+/* Animation pour l'avatar de gauche à droite */
+@keyframes slide-avatar {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Transition pour le menu déroulant de haut en bas */
+.slide-down-enter-active {
+  animation: slide-down 0.5s ease-out forwards;
+}
+
+.slide-down-leave-active {
+  animation: slide-up 0.5s ease-out forwards;
+}
+
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
 }
 </style>

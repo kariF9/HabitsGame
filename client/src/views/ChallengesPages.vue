@@ -58,12 +58,12 @@ export default {
       selectedValue: 3,
       answers: [],
       colorLegend: [
-        { class: 'red', text: 'Rouge : 1 à 3 fois par semaine' },
-        { class: 'orange', text: 'Orange : 4 à 6 fois par semaine' },
-        { class: 'yellow', text: 'Jaune : 1 fois par jour' },
-        { class: 'green', text: 'Vert : 2 fois par jour' },
-        { class: 'blue', text: 'Bleu : 3 fois par jour' },
-        { class: 'violet', text: 'Violet : 4 fois et plus par jour' },
+        { class: 'red', text: '1 à 3 fois par semaine' },
+        { class: 'orange', text: '4 à 6 fois par semaine' },
+        { class: 'yellow', text: '1 fois par jour' },
+        { class: 'green', text: '2 fois par jour' },
+        { class: 'blue', text: '3 fois par jour' },
+        { class: 'violet', text: '4 fois et plus par jour' },
       ],
       messageDisplayed: false
     };
@@ -205,7 +205,7 @@ h2 {
 .next-question-btn {
   background-color: #2196F3;
   color: white;
-  margin-top: 80px; /* Ajustement pour mieux espacer le bouton "Question suivante" */
+  margin-top: 95px; /* Ajustement pour mieux espacer le bouton "Question suivante" */
 }
 
 .next-question-btn:hover {

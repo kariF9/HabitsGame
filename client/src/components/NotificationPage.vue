@@ -29,7 +29,7 @@ export default {
   methods: {
     addNotification(event) {
       this.notifications.push(event.detail);
-      setTimeout(() => this.removeNotification(0), 5000); // Auto-remove after 5 seconds
+      setTimeout(() => this.removeNotification(0), 5000);
     },
     removeNotification(index) {
       this.notifications.splice(index, 1);
@@ -69,7 +69,7 @@ export default {
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+.fade-enter, .fade-leave-to {
   opacity: 0;
 }
 

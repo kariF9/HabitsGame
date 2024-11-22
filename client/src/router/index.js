@@ -31,6 +31,7 @@ const routes = [
   { path: '/nutri-score', name: 'NutriScoreCalculator', component: NutriScoreCalculator }, // Ajout de la route pour le calculateur de Nutri-Score
   { path: '/parametres', name: 'ParametresGenerales', component: ParametresGenerales }, // Ajout de la route pour ParametresGenerales
   { path: '/notifications', name: 'NotificationPage', component: NotificationPage }, // Ajout de la route pour NotificationPage
+  
 ];
 
 const router = createRouter({

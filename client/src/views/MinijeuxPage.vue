@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <!-- Nouveau titre -->
-    <h1 class="main-title">Transformer vos habitudes alimentaires en jeu captivant</h1>
-    <h2 class="sub-title">Développer un mode de vie plus sain en relevant des défis nutritionnels, tout en vous amusant à choisir vos repas et à répondre aux questionnaires et à suivre votre progrès</h2>
+    <h1 class="main-title">{{ $t('title') }}</h1>
+    <h2 class="sub-title">{{ $t('subtitle') }}</h2>
 
     <!-- Section avec les cartes créatives -->
     <section class="creative-cards style-one">
@@ -13,8 +13,8 @@
               <div class="card-icons">
                 <img class="light-icon" src="../assets/questionnaires.png" alt="icon" />
               </div>
-              <h3><a href="/challenges">Questionnaires</a></h3>
-              <p>Répondez à des questionnaires pour évaluer <br> et suivre vos habitudes alimentaires. Recevez des conseils personnalisés pour améliorer votre régime.</p>
+              <h3><a href="/challenges">{{ $t('questionnaireTitle') }}</a></h3>
+              <p>{{ $t('questionnaireDescription') }}</p>
               <a class="read-more-btn" href="/challenges"><i class="fa-solid fa-angles-right"></i></a>
             </div>
           </div>
@@ -23,8 +23,8 @@
               <div class="card-icons">
                 <img class="light-icon" src="../assets/compose_plat.png" alt="icon" />
               </div>
-              <h3><a href="/recipes">Compose ton repas</a></h3>
-              <p>Créez et personnalisez vos plats en sélectionnant des ingrédients, puis vérifiez leur valeur nutritionnelle et obtenez un feedback sur vos choix.</p>
+              <h3><a href="/recipes">{{ $t('composeMealTitle') }}</a></h3>
+              <p>{{ $t('composeMealDescription') }}</p>
               <a class="read-more-btn" href="/recipes"><i class="fa-solid fa-angles-right"></i></a>
             </div>
           </div>
@@ -33,8 +33,8 @@
               <div class="card-icons">
                 <img class="light-icon" src="../assets/snake.png" alt="icon" />
               </div>
-              <h3><a href="/snake">Jeu de Serpent</a></h3>
-              <p>Jouez au jeu de serpent où vous devez manger des fruits et des légumes pour augmenter votre score. Attention, si vous mangez des burgers ou des frites, vous perdez la partie !</p>
+              <h3><a href="/snake">{{ $t('snakeGameTitle') }}</a></h3>
+              <p>{{ $t('snakeGameDescription') }}</p>
               <a class="read-more-btn" href="/snake"><i class="fa-solid fa-angles-right"></i></a>
             </div>
           </div>
@@ -43,8 +43,8 @@
               <div class="card-icons">
                 <img class="light-icon" src="../assets/nutriscore.png" alt="icon" />
               </div>
-              <h3><a href="/nutri-score">Calculateur de Nutri-Score</a></h3>
-              <p>Utilisez le calculateur de Nutri-Score pour évaluer la qualité nutritionnelle de vos aliments. Obtenez des informations détaillées sur les ingrédients.</p>
+              <h3><a href="/nutri-score">{{ $t('nutriScoreTitle') }}</a></h3>
+              <p>{{ $t('nutriScoreDescription') }}</p>
               <a class="read-more-btn" href="/nutri-score"><i class="fa-solid fa-angles-right"></i></a>
             </div>
           </div>
@@ -53,7 +53,6 @@
     </section>
   </div>
 </template>
-
 <script>
 document.querySelectorAll('a').forEach(anchor => {
   anchor.addEventListener('click', function(event) {

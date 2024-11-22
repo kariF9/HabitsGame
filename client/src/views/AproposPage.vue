@@ -4,14 +4,13 @@
       <img src="../assets/Apropos.jpg" alt="background">
     </picture>
     <figure>
-      <h1>Bienvenue sur HabitsGame</h1>
+      <h1>{{ $t('aboutPage.title') }}</h1>
       <figcaption>
-        HabitsGame est une application innovante conçue pour la collecte et l'analyse des habitudes alimentaires. Elle permet aux utilisateurs de suivre et d'évaluer leur alimentation quotidienne, offrant une vue détaillée de leurs choix alimentaires. Grâce à une interface intuitive, HabitsGame facilite la saisie des repas et des collations, et fournit des recommandations personnalisées pour encourager des habitudes alimentaires plus saines. Avec des fonctionnalités motivantes telles que des objectifs, des défis et des récompenses, cette application aide les utilisateurs à adopter un mode de vie équilibré et à atteindre leurs objectifs de santé.
+        {{ $t('aboutPage.description') }}
       </figcaption>
     </figure>
   </div>
 </template>
-
 <script>
 export default {
   name: 'AproposPage',
@@ -52,7 +51,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 100vw;
-  height: 87.8vh;
+  height: 87.3vh;
   overflow: hidden;
   margin: 0;
 }

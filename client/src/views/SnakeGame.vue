@@ -154,7 +154,7 @@ export default {
       if (finalScore > this.highScore) {
         this.highScore = finalScore;
       }
-      const scores = JSON.parse(localStorage.getItem('snakeScores')) || [];
+      const scores = JSON.parse(localStorage.getItem('snakeScores')) || []; // trouver le chemin de fichier JSON !!! 
       scores.push(finalScore);
       localStorage.setItem('snakeScores', JSON.stringify(scores));
       alert('Game Over! Votre score: ' + finalScore);
@@ -250,7 +250,7 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 87.8vh;
+  min-height: 87.3vh;
   background-color: black;
 }
 
