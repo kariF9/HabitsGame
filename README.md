@@ -40,3 +40,4 @@ Récupérer le lien Local et lancez-le dans votre navigateur.
 Contact: 
 Si vous avez des questions ou des suggestions, n'hésitez pas à nous contacter à karimabahman00@gmail.com.
 
+Le site est accessible via ce lien : karif9.github.io/HabitsGame/
