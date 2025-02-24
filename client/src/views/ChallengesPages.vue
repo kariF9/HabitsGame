@@ -213,7 +213,7 @@ h2 {
 }
 
 .color-legend {
-  margin-top: 30px;
+  margin-top: 10px;
   padding: 10px;
   border-top: 2px solid #ccc;
   display: inline-block;

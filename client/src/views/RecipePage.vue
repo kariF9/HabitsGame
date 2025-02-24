@@ -362,8 +362,8 @@ export default {
     getDrinkColor() {
       if (this.drinkDish.length > 0) {
         const lastDrink = this.drinkDish[this.drinkDish.length - 1];
-        if (lastDrink.includes('eau')) return 'blue';
-        if (lastDrink.includes('jus')) return 'orange';
+        if (lastDrink.includes('eau')) return '';
+        if (lastDrink.includes('jus')) return '';
       }
       return 'transparent';
     }

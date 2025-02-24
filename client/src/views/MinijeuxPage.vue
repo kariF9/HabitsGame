@@ -81,12 +81,12 @@ document.querySelectorAll('a').forEach(anchor => {
   font-size: 1.25rem;
   font-weight: 400;
   color: #444;
-  margin-bottom: 40px;
+  margin-bottom: 41px;
 }
 
 /* Styles pour la section des cartes créatives */
 .creative-cards {
-  padding: 120px 0;
+  padding: 72px 0;
   position: relative;
   margin-top: -90px;
 }

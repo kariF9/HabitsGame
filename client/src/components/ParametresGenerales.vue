@@ -74,6 +74,14 @@ export default {
         message.value = t('settings.saveSuccess');
         messageClass.value = 'success';
         notyf.success(message.value);
+
+        // Activer/désactiver les notifications selon la préférence
+        if (settings.notifications === 'enabled') {
+          localStorage.setItem('notificationsEnabled', 'true');
+        } else {
+          localStorage.setItem('notificationsEnabled', 'false');
+        }
+
         setTimeout(() => {
           window.location.reload();
         }, 500);
